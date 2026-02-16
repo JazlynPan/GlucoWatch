@@ -31,7 +31,9 @@ jobs:
       run: chmod +x gradlew
       
     - name: 🏗️ 構建 Debug APK
-      run: ./gradlew assembleDebug --stacktrace
+      run: |
+        ./gradlew clean
+        ./gradlew assembleDebug
       
     - name: 📦 上傳 APK
       uses: actions/upload-artifact@v4
