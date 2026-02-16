@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/lockscreen_bg"
+    android:padding="24dp"
+    android:gravity="center">
+    
+    <!-- 血糖數值 -->
+    <TextView
+        android:id="@+id/tv_glucose_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="125"
+        android:textSize="96sp"
+        android:textColor="@color/glucose_normal"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="bold"
+        tools:text="125" />
+    
+    <!-- 趨勢箭頭 -->
+    <TextView
+        android:id="@+id/tv_trend_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="→"
+        android:textSize="64sp"
+        android:textColor="@color/glucose_normal"
+        android:layout_marginTop="8dp"
+        tools:text="→" />
+    
+    <!-- 單位 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="mg/dL"
+        android:textSize="32sp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="4dp"
+        android:alpha="0.8" />
+    
+    <!-- 狀態描述 -->
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="正常"
+        android:textSize="40sp"
+        android:textColor="@color/glucose_normal"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-medium"
+        tools:text="正常" />
+    
+    <!-- 更新時間 -->
+    <TextView
+        android:id="@+id/tv_last_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2分鐘前"
+        android:textSize="28sp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="8dp"
+        android:alpha="0.7"
+        tools:text="2分鐘前" />
+    
+    <!-- 監康官標誌 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="監康官 GlucoWatch"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"
+        android:alpha="0.5" />
+</LinearLayout>

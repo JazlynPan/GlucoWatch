@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 應用名稱 -->
+    <string name="app_name">血糖監控</string>
+    
+    <!-- 主界面 -->
+    <string name="main_title">血糖監控</string>
+    <string name="refresh">刷新</string>
+    <string name="loading">正在載入…</string>
+    <string name="no_data">暫無血糖數據</string>
+    <string name="no_data_hint">請確保 xDrip+ 已安裝並正常運行</string>
+    <string name="reload">重新載入</string>
+    <string name="error_occurred">發生錯誤</string>
+    <string name="retry">重試</string>
+    
+    <!-- 血糖狀態 -->
+    <string name="glucose_normal">正常</string>
+    <string name="glucose_low">低血糖</string>
+    <string name="glucose_high">高血糖</string>
+    <string name="glucose_critically_low">嚴重低血糖</string>
+    <string name="glucose_critically_high">嚴重高血糖</string>
+    
+    <!-- 趨勢 -->
+    <string name="trend_rapidly_falling">快速下降</string>
+    <string name="trend_falling">下降</string>
+    <string name="trend_stable">穩定</string>
+    <string name="trend_rising">上升</string>
+    <string name="trend_rapidly_rising">快速上升</string>
+    
+    <!-- 單位 -->
+    <string name="unit_mgdl">mg/dL</string>
+    
+    <!-- 用餐記錄 -->
+    <string name="meal_breakfast">早餐</string>
+    <string name="meal_lunch">午餐</string>
+    <string name="meal_dinner">晚餐</string>
+    <string name="meal_snack">點心</string>
+    <string name="record_meal">記錄飲食</string>
+    <string name="meal_history">歷史記錄</string>
+    <string name="are_you_eating">您正在用餐嗎？</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    
+    <!-- 食物類別 -->
+    <string name="food_grain">主食</string>
+    <string name="food_protein">蛋白質</string>
+    <string name="food_vegetable">蔬菜</string>
+    <string name="food_fruit">水果</string>
+    <string name="food_dairy">乳製品</string>
+    <string name="food_snack">零食</string>
+    <string name="food_beverage">飲料</string>
+    <string name="food_other">其他</string>
+    
+    <!-- 警報 -->
+    <string name="alarm_low">低血糖警報</string>
+    <string name="alarm_high">高血糖警報</string>
+    <string name="alarm_critically_low">嚴重低血糖！請立即處理</string>
+    <string name="alarm_critically_high">嚴重高血糖！請注意</string>
+    
+    <!-- 通知 -->
+    <string name="notification_channel_name">血糖監控</string>
+    <string name="notification_channel_description">血糖警報和提醒</string>
+    <string name="notification_alarm">血糖警報</string>
+    <string name="notification_sync">數據同步</string>
+    
+    <!-- 設置 -->
+    <string name="settings">設置</string>
+    <string name="settings_alarm">警報設置</string>
+    <string name="settings_alarm_low_threshold">低血糖閾值</string>
+    <string name="settings_alarm_high_threshold">高血糖閾值</string>
+    <string name="settings_display">顯示設置</string>
+    <string name="settings_font_size">字體大小</string>
+    <string name="settings_about">關於</string>
+    
+    <!-- 錯誤訊息 -->
+    <string name="error_xdrip_not_installed">xDrip+ 未安裝</string>
+    <string name="error_xdrip_no_connection">無法連接到 xDrip+</string>
+    <string name="error_no_data_available">沒有可用的血糖數據</string>
+    <string name="error_unknown">未知錯誤</string>
+    
+    <!-- 權限 -->
+    <string name="permission_notification">通知權限</string>
+    <string name="permission_notification_rationale">需要通知權限以發送血糖警報</string>
+    <string name="permission_overlay">懸浮窗權限</string>
+    <string name="permission_overlay_rationale">需要懸浮窗權限以顯示鎖屏血糖</string>
+    <string name="permission_audio">麥克風權限</string>
+    <string name="permission_audio_rationale">需要麥克風權限以使用語音輸入功能</string>
+    
+    <!-- AI 助手（監康官）-->
+    <string name="ai_assistant_name">監康官</string>
+    <string name="ai_greeting">您好！我是您的血糖管理助手「監康官」</string>
+    <string name="ai_how_can_help">有什麼我可以幫助您的嗎？</string>
+    
+    <!-- 服務 -->
+    <string name="service_monitoring">正在監控血糖數值</string>
+    <string name="service_lockscreen">鎖屏血糖顯示</string>
+    <string name="service_alarm">血糖警報服務</string>
+    <string name="service_meal_detection">餐後偵測服務</string>
+    
+    <!-- 警報 -->
+    <string name="alarm_critically_low_title">嚴重低血糖！</string>
+    <string name="alarm_low_title">低血糖警報</string>
+    <string name="alarm_high_title">高血糖提醒</string>
+    <string name="alarm_critically_high_title">嚴重高血糖！</string>
+    
+    <!-- 餐後偵測 -->
+    <string name="meal_detection_title">您正在用餐嗎？</string>
+    <string name="meal_detection_yes">是，記錄用餐</string>
+    <string name="meal_detection_no">不是</string>
+    
+    <!-- 飲食記錄 -->
+    <string name="meal_record_title">記錄飲食</string>
+    <string name="meal_voice_input">語音輸入</string>
+    <string name="meal_voice_prompt">請說出您吃了什麼食物</string>
+    <string name="meal_quick_select">快速選擇</string>
+    <string name="meal_selected_foods">已記錄的食物</string>
+    <string name="meal_save">保存記錄</string>
+    <string name="meal_total_carbs">總碳水：%1$dg</string>
+    
+    <!-- 圖表 -->
+    <string name="chart_24h_trend">24小時血糖趨勢</string>
+    <string name="chart_no_data">暫無血糖數據</string>
+    <string name="chart_target_range">目標範圍</string>
+    <string name="chart_time_in_range">目標內時間</string>
+</resources>

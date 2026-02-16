@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 主題顏色 -->
+    <color name="primary">#00C853</color>
+    <color name="primary_variant">#00A843</color>
+    <color name="secondary">#2196F3</color>
+    <color name="secondary_variant">#1976D2</color>
+    
+    <!-- 血糖狀態顏色 -->
+    <color name="glucose_normal">#00C853</color>
+    <color name="glucose_low">#FFA500</color>
+    <color name="glucose_high">#FFA500</color>
+    <color name="glucose_critical">#FF0000</color>
+    
+    <!-- 背景顏色 -->
+    <color name="background_light">#FAFAFA</color>
+    <color name="background_dark">#121212</color>
+    <color name="surface_light">#FFFFFF</color>
+    <color name="surface_dark">#1E1E1E</color>
+    
+    <!-- 文字顏色 -->
+    <color name="text_primary_light">#000000</color>
+    <color name="text_primary_dark">#FFFFFF</color>
+    <color name="text_secondary_light">#757575</color>
+    <color name="text_secondary_dark">#B0B0B0</color>
+    
+    <!-- 系統顏色 -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
