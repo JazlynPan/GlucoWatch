@@ -1,8 +1,5 @@
-name: Build Android APK
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+name: Build
+on: [push, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,11 +9,8 @@ jobs:
         with:
           java-version: 17
           distribution: temurin
-      - name: Build
-        run: |
-          chmod +x gradlew
-          ./gradlew assembleDebug
+      - run: bash build.sh
       - uses: actions/upload-artifact@v4
         with:
-          name: app-debug
+          name: APK
           path: app/build/outputs/apk/debug/app-debug.apk
