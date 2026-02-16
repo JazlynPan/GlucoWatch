@@ -1,4 +1,4 @@
-name: Build GlucoWatch Release APK
+name: Build GlucoWatch APK
 on:
   push:
     branches: [main]
@@ -15,5 +15,5 @@ jobs:
       - run: bash build.sh
       - uses: actions/upload-artifact@v4
         with:
-          name: GlucoWatch-Release-APK
-          path: app/build/outputs/apk/release/app-release-unsigned.apk
+          name: GlucoWatch-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
