@@ -231,28 +231,29 @@ class AIAssistantViewModel @Inject constructor(
         val endTime = System.currentTimeMillis()
         val startTime = endTime - (3 * 60 * 60 * 1000)
         
-        return glucoseRepository.getReadingsInRange(startTime, endTime)
-            .fold(
-                onSuccess = { readings ->
+        return try {
+            var result = ""
+            glucoseRepository.getReadingsInRange(startTime, endTime)
+                .collect { readings ->
                     if (readings.isEmpty()) {
-                        return@fold "暫無足夠數據分析趨勢，請稍後再試。"
+                        result = "暫無足夠數據分析趨勢，請稍後再試。"
+                    } else {
+                        val trend = analyzeTrend(readings)
+                        
+                        result = """
+                            📈 血糖趨勢分析（最近3小時）
+                            
+                            ${trend}
+                            
+                            💡 監康官建議：
+                            ${generateTrendAdvice(readings)}
+                        """.trimIndent()
                     }
-                    
-                    val trend = analyzeTrend(readings)
-                    
-                    """
-                        📈 血糖趨勢分析（最近3小時）
-                        
-                        ${trend}
-                        
-                        💡 監康官建議：
-                        ${generateTrendAdvice(readings)}
-                    """.trimIndent()
-                },
-                onFailure = { error ->
-                    "抱歉，無法分析趨勢：${error.message}"
                 }
-            )
+            result
+        } catch (error: Exception) {
+            "抱歉，無法分析趨勢：${error.message}"
+        }
     }
     
     /**

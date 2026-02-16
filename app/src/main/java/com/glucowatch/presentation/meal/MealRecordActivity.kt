@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -28,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.glucowatch.domain.model.FoodCategory
 import com.glucowatch.domain.model.FoodItem
 import com.glucowatch.domain.model.MealType
 import com.glucowatch.ui.theme.GlucoWatchTheme
@@ -340,14 +342,14 @@ fun QuickFoodSelector(onFoodSelect: (FoodItem) -> Unit) {
         
         // 台灣常見食物
         val commonFoods = listOf(
-            FoodItem("白飯", "主食", 56.0, "1碗"),
-            FoodItem("滷肉飯", "主食", 65.0, "1碗"),
-            FoodItem("水餃", "主食", 60.0, "10顆"),
-            FoodItem("麵條", "主食", 45.0, "1碗"),
-            FoodItem("珍珠奶茶", "飲料", 60.0, "700ml"),
-            FoodItem("蚵仔煎", "小吃", 35.0, "1份"),
-            FoodItem("雞排", "小吃", 15.0, "1份"),
-            FoodItem("地瓜", "主食", 25.0, "1條")
+            FoodItem("白飯", FoodCategory.GRAIN, 56.0, "1碗"),
+            FoodItem("滷肉飯", FoodCategory.GRAIN, 65.0, "1碗"),
+            FoodItem("水餃", FoodCategory.GRAIN, 60.0, "10顆"),
+            FoodItem("麵條", FoodCategory.GRAIN, 45.0, "1碗"),
+            FoodItem("珍珠奶茶", FoodCategory.BEVERAGE, 60.0, "700ml"),
+            FoodItem("蚵仔煎", FoodCategory.SNACK, 35.0, "1份"),
+            FoodItem("雞排", FoodCategory.SNACK, 15.0, "1份"),
+            FoodItem("地瓜", FoodCategory.GRAIN, 25.0, "1條")
         )
         
         LazyColumn(

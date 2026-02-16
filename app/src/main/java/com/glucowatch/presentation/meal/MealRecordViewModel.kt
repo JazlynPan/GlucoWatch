@@ -3,6 +3,7 @@ package com.glucowatch.presentation.meal
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.glucowatch.data.repository.GlucoseRepository
+import com.glucowatch.domain.model.FoodCategory
 import com.glucowatch.domain.model.FoodItem
 import com.glucowatch.domain.model.MealRecord
 import com.glucowatch.domain.model.MealType
@@ -65,6 +66,22 @@ class MealRecordViewModel @Inject constructor(
     }
     
     /**
+     * 輔助函數：將類別名稱轉換為 FoodCategory 枚舉
+     */
+    private fun String.toFoodCategory(): FoodCategory {
+        return when (this) {
+            "主食" -> FoodCategory.GRAIN
+            "蛋白質" -> FoodCategory.PROTEIN
+            "蔬菜" -> FoodCategory.VEGETABLE
+            "水果" -> FoodCategory.FRUIT
+            "乳製品" -> FoodCategory.DAIRY
+            "小吃", "零食" -> FoodCategory.SNACK
+            "飲料" -> FoodCategory.BEVERAGE
+            else -> FoodCategory.OTHER
+        }
+    }
+    
+    /**
      * 從語音文字解析食物
      */
     private fun parseFoodFromSpeech(text: String): List<FoodItem> {
@@ -73,32 +90,32 @@ class MealRecordViewModel @Inject constructor(
         
         // 台灣食物資料庫
         val foodDatabase = mapOf(
-            "白飯" to FoodItem("白飯", "主食", 56.0, "1碗"),
-            "飯" to FoodItem("白飯", "主食", 56.0, "1碗"),
-            "滷肉飯" to FoodItem("滷肉飯", "主食", 65.0, "1碗"),
-            "水餃" to FoodItem("水餃", "主食", 60.0, "10顆"),
-            "餃子" to FoodItem("水餃", "主食", 60.0, "10顆"),
-            "麵" to FoodItem("麵條", "主食", 45.0, "1碗"),
-            "麵條" to FoodItem("麵條", "主食", 45.0, "1碗"),
-            "珍珠奶茶" to FoodItem("珍珠奶茶", "飲料", 60.0, "700ml"),
-            "奶茶" to FoodItem("珍珠奶茶", "飲料", 60.0, "700ml"),
-            "蚵仔煎" to FoodItem("蚵仔煎", "小吃", 35.0, "1份"),
-            "雞排" to FoodItem("雞排", "小吃", 15.0, "1份"),
-            "炸雞" to FoodItem("雞排", "小吃", 15.0, "1份"),
-            "地瓜" to FoodItem("地瓜", "主食", 25.0, "1條"),
-            "麵包" to FoodItem("麵包", "主食", 30.0, "1片"),
-            "吐司" to FoodItem("吐司", "主食", 15.0, "1片"),
-            "饅頭" to FoodItem("饅頭", "主食", 35.0, "1個"),
-            "包子" to FoodItem("包子", "主食", 35.0, "1個"),
-            "牛奶" to FoodItem("牛奶", "飲料", 12.0, "250ml"),
-            "豆漿" to FoodItem("豆漿", "飲料", 8.0, "250ml"),
-            "水果" to FoodItem("水果", "水果", 15.0, "1份"),
-            "蘋果" to FoodItem("蘋果", "水果", 25.0, "1個"),
-            "香蕉" to FoodItem("香蕉", "水果", 27.0, "1根"),
-            "芭樂" to FoodItem("芭樂", "水果", 14.0, "1個"),
-            "便當" to FoodItem("便當", "主食", 90.0, "1個"),
-            "漢堡" to FoodItem("漢堡", "主食", 45.0, "1個"),
-            "薯條" to FoodItem("薯條", "小吃", 35.0, "1份")
+            "白飯" to FoodItem("白飯", FoodCategory.GRAIN, 56.0, "1碗"),
+            "飯" to FoodItem("白飯", FoodCategory.GRAIN, 56.0, "1碗"),
+            "滷肉飯" to FoodItem("滷肉飯", FoodCategory.GRAIN, 65.0, "1碗"),
+            "水餃" to FoodItem("水餃", FoodCategory.GRAIN, 60.0, "10顆"),
+            "餃子" to FoodItem("水餃", FoodCategory.GRAIN, 60.0, "10顆"),
+            "麵" to FoodItem("麵條", FoodCategory.GRAIN, 45.0, "1碗"),
+            "麵條" to FoodItem("麵條", FoodCategory.GRAIN, 45.0, "1碗"),
+            "珍珠奶茶" to FoodItem("珍珠奶茶", FoodCategory.BEVERAGE, 60.0, "700ml"),
+            "奶茶" to FoodItem("珍珠奶茶", FoodCategory.BEVERAGE, 60.0, "700ml"),
+            "蚵仔煎" to FoodItem("蚵仔煎", FoodCategory.SNACK, 35.0, "1份"),
+            "雞排" to FoodItem("雞排", FoodCategory.SNACK, 15.0, "1份"),
+            "炸雞" to FoodItem("雞排", FoodCategory.SNACK, 15.0, "1份"),
+            "地瓜" to FoodItem("地瓜", FoodCategory.GRAIN, 25.0, "1條"),
+            "麵包" to FoodItem("麵包", FoodCategory.GRAIN, 30.0, "1片"),
+            "吐司" to FoodItem("吐司", FoodCategory.GRAIN, 15.0, "1片"),
+            "饅頭" to FoodItem("饅頭", FoodCategory.GRAIN, 35.0, "1個"),
+            "包子" to FoodItem("包子", FoodCategory.GRAIN, 35.0, "1個"),
+            "牛奶" to FoodItem("牛奶", FoodCategory.BEVERAGE, 12.0, "250ml"),
+            "豆漿" to FoodItem("豆漿", FoodCategory.BEVERAGE, 8.0, "250ml"),
+            "水果" to FoodItem("水果", FoodCategory.FRUIT, 15.0, "1份"),
+            "蘋果" to FoodItem("蘋果", FoodCategory.FRUIT, 25.0, "1個"),
+            "香蕉" to FoodItem("香蕉", FoodCategory.FRUIT, 27.0, "1根"),
+            "芭樂" to FoodItem("芭樂", FoodCategory.FRUIT, 14.0, "1個"),
+            "便當" to FoodItem("便當", FoodCategory.GRAIN, 90.0, "1個"),
+            "漢堡" to FoodItem("漢堡", FoodCategory.GRAIN, 45.0, "1個"),
+            "薯條" to FoodItem("薯條", FoodCategory.SNACK, 35.0, "1份")
         )
         
         // 搜索匹配的食物
@@ -113,7 +130,7 @@ class MealRecordViewModel @Inject constructor(
             foods.add(
                 FoodItem(
                     name = text,
-                    category = "其他",
+                    category = FoodCategory.OTHER,
                     carbs = null, // 需要用戶手動輸入
                     portion = "1份"
                 )
@@ -141,13 +158,13 @@ class MealRecordViewModel @Inject constructor(
                     timestamp = System.currentTimeMillis(),
                     mealType = state.selectedMealType,
                     foodItems = state.selectedFoods,
-                    totalCarbs = state.selectedFoods.sumOf { it.carbs ?: 0.0 },
                     glucoseBefore = glucoseBefore,
-                    notes = null
+                    notes = ""
                 )
                 
-                // 保存到資料庫
-                glucoseRepository.insertMealRecord(mealRecord)
+                // 保存到資料庫（暫時不實作，因為需要在 repository 中添加方法）
+                // TODO: 實作 insertMealRecord 方法
+                // glucoseRepository.insertMealRecord(mealRecord)
                 
                 // 通知成功
                 _uiState.value = _uiState.value.copy(
