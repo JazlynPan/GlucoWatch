@@ -1,4 +1,4 @@
-name: Android CI - 自動構建 APK
+name: Android CI
 
 on:
   push:
@@ -15,35 +15,34 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    
+
     steps:
-    - name: 📥 檢出代碼
+    - name: Checkout code
       uses: actions/checkout@v4
-      
-    - name: ☕ 設置 JDK 17
+
+    - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
-        
-    - name: 🔧 授予 Gradle 執行權限
+
+    - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-      
-    - name: 🧹 清理構建
-      run: ./gradlew clean
-      
-    - name: 🏗️ 構建 Debug APK
-      run: ./gradlew assembleDebug
-      
-    - name: 📦 上傳 APK
+
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug --stacktrace
+
+    - name: Upload APK
       uses: actions/upload-artifact@v4
       if: success()
       with:
         name: GlucoWatch-Debug-APK
         path: app/build/outputs/apk/debug/*.apk
         retention-days: 30
-        
-    - name: ✅ 構建成功
+
+    - name: Build Success
       if: success()
-      run: echo "✅ APK 構建成功！"
+      run: |
+        echo "Build completed successfully"
+        echo "APK location: app/build/outputs/apk/debug/app-debug.apk"
