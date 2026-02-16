@@ -58,6 +58,19 @@ class GlucoseRepository @Inject constructor(
     }
     
     /**
+     * 觀察最新血糖讀數
+     */
+    fun observeLatestReading(): Flow<Result<GlucoseReading>> {
+        return glucoseReadingDao.getRecentReadings(1).map { entities ->
+            if (entities.isNotEmpty()) {
+                Result.success(entities.first().toDomainModel())
+            } else {
+                Result.failure(Exception("No glucose data available"))
+            }
+        }
+    }
+    
+    /**
      * 從 xDrip+ 同步數據
      */
     suspend fun syncFromXDrip(): Result<Int> {
