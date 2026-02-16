@@ -31,8 +31,7 @@ jobs:
       run: chmod +x gradlew
 
     - name: 🏗️ 構建 Debug APK
-      run: >
-        ./gradlew assembleDebug --stacktrace
+      run: ./gradlew assembleDebug
 
     - name: 📦 上傳 APK
       uses: actions/upload-artifact@v4
@@ -44,7 +43,4 @@ jobs:
 
     - name: ✅ 構建成功
       if: success()
-      run: |
-        echo "✅ APK 構建成功！"
-        echo "📱 請在 Actions 頁面下載 APK 文件"
-        echo "📍 APK 位置: app/build/outputs/apk/debug/app-debug.apk"
+      run: echo "APK 構建成功"
