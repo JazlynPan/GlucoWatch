@@ -101,7 +101,7 @@ class LockScreenService : LifecycleService() {
             glucoseRepository.observeLatestReading().collect { result ->
                 result.onSuccess { reading ->
                     updateDisplay(reading)
-                }.onFailure { error ->
+                }.onFailure { error: Throwable ->
                     showError(error.message ?: "無法讀取血糖數據")
                 }
             }
