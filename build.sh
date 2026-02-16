@@ -1,4 +1,5 @@
 #!/bin/bash
 set -e
 chmod +x gradlew
-./gradlew assembleDebug
+# 構建 Release APK（正式版本）
+./gradlew assembleRelease
