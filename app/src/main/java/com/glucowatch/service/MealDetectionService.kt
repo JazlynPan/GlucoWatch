@@ -68,8 +68,8 @@ class MealDetectionService : LifecycleService() {
      */
     private fun startMealDetection() {
         lifecycleScope.launch {
-            glucoseRepository.observeLatestReading().collect { result ->
-                result.onSuccess { reading ->
+            glucoseRepository.observeLatestReading().collect { result: Result<GlucoseReading> ->
+                result.onSuccess { reading: GlucoseReading ->
                     analyzeGlucoseRise(reading)
                 }
             }
