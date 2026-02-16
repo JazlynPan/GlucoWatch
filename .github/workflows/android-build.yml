@@ -26,14 +26,10 @@ jobs:
           distribution: "temurin"
           cache: gradle
 
-      - name: Make gradlew executable
-        run: chmod +x gradlew
-
-      - name: List available Gradle tasks
-        run: ./gradlew tasks --all
-
       - name: Build APK
-        run: ./gradlew :app:assembleDebug
+        run: |
+          chmod +x gradlew
+          bash gradlew :app:assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
