@@ -1,16 +1,50 @@
-name: Build
-on: [push, workflow_dispatch]
+name: Android CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-java@v4
         with:
-          java-version: 17
-          distribution: temurin
-      - run: chmod +x gradlew && ./gradlew assembleDebug
+          java-version: "17"
+          distribution: "temurin"
+          cache: gradle
+      
+      - name: List project structure
+        run: |
+          echo "=== Project Structure ==="
+          ls -la
+          echo "=== App Directory ==="
+          ls -la app/ 2>/dev/null || echo "app/ not found"
+          echo "=== Gradle Properties ==="
+          cat gradle.properties 2>/dev/null || echo "No gradle.properties"
+      
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+      
+      - name: List Gradle tasks
+        run: bash -c "./gradlew tasks" || echo "Failed to list tasks"
+      
+      - name: Build with detailed output
+        run: bash -c "./gradlew :app:assembleDebug --info --stacktrace" || bash -c "./gradlew assembleDebug --info --stacktrace"
+      
       - uses: actions/upload-artifact@v4
+        if: success()
         with:
-          name: APK
+          name: GlucoWatch-Debug-APK
           path: app/build/outputs/apk/debug/*.apk
+          retention-days: 30
