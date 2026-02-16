@@ -1,4 +1,4 @@
-name: Android CI
+name: Android CI - 自動構建 APK
 
 on:
   push:
@@ -17,23 +17,23 @@ jobs:
     timeout-minutes: 30
 
     steps:
-    - name: Checkout code
+    - name: 📥 檢出代碼
       uses: actions/checkout@v4
 
-    - name: Set up JDK 17
+    - name: ☕ 設置 JDK 17
       uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
 
-    - name: Grant execute permission for gradlew
+    - name: 🔧 授予 Gradle 執行權限
       run: chmod +x gradlew
 
-    - name: Build Debug APK
+    - name: 🏗️ 構建 Debug APK
       run: ./gradlew assembleDebug --stacktrace
 
-    - name: Upload APK
+    - name: 📦 上傳 APK
       uses: actions/upload-artifact@v4
       if: success()
       with:
@@ -41,8 +41,9 @@ jobs:
         path: app/build/outputs/apk/debug/*.apk
         retention-days: 30
 
-    - name: Build Success
+    - name: ✅ 構建成功
       if: success()
       run: |
-        echo "Build completed successfully"
-        echo "APK location: app/build/outputs/apk/debug/app-debug.apk"
+        echo "✅ APK 構建成功！"
+        echo "📱 請在 Actions 頁面下載 APK 文件"
+        echo "📍 APK 位置: app/build/outputs/apk/debug/app-debug.apk"
