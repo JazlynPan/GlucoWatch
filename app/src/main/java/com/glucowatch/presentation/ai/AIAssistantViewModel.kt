@@ -145,7 +145,7 @@ class AIAssistantViewModel @Inject constructor(
             lowerMessage.contains("為什麼") && (
                 lowerMessage.contains("高") ||
                 lowerMessage.contains("升") ||
-                lowerMessage.contains("上"升")
+                lowerMessage.contains("上升")
             ) -> UserIntent.ASK_WHY_HIGH
             
             // 為什麼低血糖
